@@ -1,0 +1,20 @@
+[
+    {
+        "aluno": "Bruno",
+        "turma": "ADS2",
+        "disciplina": "engenharia",
+        "nota": "10"
+    },
+    {
+        "aluno": "Adrian",
+        "turma": "ADS2",
+        "disciplina": "python",
+        "nota": "10"
+    },
+    {
+        "aluno": "Bruno",
+        "turma": "ADS2",
+        "disciplina": "c++",
+        "nota": "10"
+    }
+]

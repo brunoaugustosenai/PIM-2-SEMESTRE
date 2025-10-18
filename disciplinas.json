@@ -1,0 +1,20 @@
+[
+    {
+        "nome": "Engenharia de Software",
+        "codigo": "ENG001",
+        "professor": "Raul",
+        "carga_horaria": "80"
+    },
+    {
+        "nome": "Programação Python",
+        "codigo": "PYT002",
+        "professor": "Aldy",
+        "carga_horaria": "60"
+    },
+    {
+        "nome": "Programação C++",
+        "codigo": "CPP003",
+        "professor": "Roger",
+        "carga_horaria": "70"
+    }
+]
