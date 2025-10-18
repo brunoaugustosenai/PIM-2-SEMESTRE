@@ -107,6 +107,70 @@ def inicializar_sistema():
             disciplinas.append(disc)
     
     salvar_disciplinas(disciplinas)
+# ===================== FUNÇÕES DE REMOÇÃO =====================
+def remover_aluno(valores):
+    """Remove um aluno baseado nos valores da linha selecionada"""
+    alunos = carregar_alunos()
+    nome, ra, turma, curso = valores
+    
+    # Encontrar e remover o aluno
+    alunos = [aluno for aluno in alunos if not (
+        aluno.get('nome', '') == nome and 
+        aluno.get('RA', '') == ra and 
+        aluno.get('turma', '') == turma and 
+        aluno.get('curso', '') == curso
+    )]
+    
+    salvar_alunos(alunos)
+
+def remover_disciplina(valores):
+    """Remove uma disciplina baseada nos valores da linha selecionada"""
+    disciplinas = carregar_disciplinas()
+    nome, codigo, professor, carga_horaria = valores
+    
+    # Remover 'h' da carga horária para comparação
+    carga_horaria = carga_horaria.replace('h', '')
+    
+    # Encontrar e remover a disciplina
+    disciplinas = [disc for disc in disciplinas if not (
+        disc.get('nome', '') == nome and 
+        disc.get('codigo', '') == codigo and 
+        disc.get('professor', '') == professor and 
+        disc.get('carga_horaria', '') == carga_horaria
+    )]
+    
+    salvar_disciplinas(disciplinas)
+
+def remover_nota(valores):
+    """Remove uma nota baseada nos valores da linha selecionada"""
+    notas = carregar_notas()
+    aluno, turma, disciplina, nota = valores
+    
+    # Encontrar e remover a nota
+    notas = [n for n in notas if not (
+        n.get('aluno', '') == aluno and 
+        n.get('turma', '') == turma and 
+        n.get('disciplina', '') == disciplina and 
+        n.get('nota', '') == nota
+    )]
+    
+    salvar_notas(notas)
+
+def remover_falta(valores):
+    """Remove uma falta baseada nos valores da linha selecionada"""
+    faltas = carregar_faltas()
+    aluno, ra, disciplina, data, quantidade = valores
+    
+    # Encontrar e remover a falta
+    faltas = [falta for falta in faltas if not (
+        falta.get('aluno', '') == aluno and 
+        falta.get('ra', '') == ra and 
+        falta.get('disciplina', '') == disciplina and 
+        falta.get('data', '') == data and 
+        falta.get('quantidade', '') == quantidade
+    )]
+    
+    salvar_faltas(faltas)
 
 # ===================== FUNÇÃO PADRÃO PARA LISTAGEM COM TABELA =====================
 def criar_janela_listagem(titulo, dados, colunas, largura_colunas=None, parent_window=None):
@@ -130,6 +194,7 @@ def criar_janela_listagem(titulo, dados, colunas, largura_colunas=None, parent_w
     if not dados:
         tk.Label(frame_tabela, text=f"Nenhum registro cadastrado.",
                  bg="#d9d9d9", font=("Arial", 11)).pack()
+        tree = None
     else:
         # Criar Treeview com estilo melhorado
         style = ttk.Style()
@@ -144,7 +209,7 @@ def criar_janela_listagem(titulo, dados, colunas, largura_colunas=None, parent_w
                         font=("Arial", 10, "bold"))
         style.map("Treeview", 
           background=[("selected", "#4CAF50")],
-          foreground=[("selected", "black")])
+          foreground=[("selected", "#000000")])
 
 
         tree = ttk.Treeview(frame_tabela, columns=colunas, show="headings", height=15)
@@ -201,6 +266,42 @@ def criar_janela_listagem(titulo, dados, colunas, largura_colunas=None, parent_w
                               command=voltar_menu)
     btn_voltar_menu.pack(side="left", padx=5)
 
+    # Botão Remover Selecionado (apenas se houver dados)
+    if dados and tree:
+        def remover_selecionado():
+            selecionado = tree.selection()
+            if not selecionado:
+                messagebox.showwarning("Aviso", "Selecione um item para remover.")
+                return
+            
+            confirmacao = messagebox.askyesno("Confirmar", "Tem certeza que deseja remover o item selecionado?")
+            if not confirmacao:
+                return
+            
+            try:
+                item_selecionado = selecionado[0]
+                valores = tree.item(item_selecionado, 'values')
+                
+                if titulo == "Alunos Cadastrados":
+                    remover_aluno(valores)
+                elif titulo == "Disciplinas Cadastradas":
+                    remover_disciplina(valores)
+                elif titulo == "Notas Cadastradas":
+                    remover_nota(valores)
+                elif titulo == "Faltas Cadastradas":
+                    remover_falta(valores)
+                
+                tree.delete(item_selecionado)
+                messagebox.showinfo("Sucesso", "Item removido com sucesso!")
+                
+            except Exception as e:
+                messagebox.showerror("Erro", f"Erro ao remover item: {str(e)}")
+
+        btn_remover = tk.Button(btn_frame, text="Remover Selecionado", bg="#e74c3c", fg="white",
+                              font=("Arial", 10, "bold"), relief="raised", 
+                              command=remover_selecionado)
+        btn_remover.pack(side="left", padx=5)
+
     # Botão Adicionar (se aplicável)
     if titulo == "Alunos Cadastrados":
         btn_adicionar = tk.Button(btn_frame, text="Adicionar Novo Aluno", bg="#4CAF50", fg="white",
@@ -224,7 +325,6 @@ def criar_janela_listagem(titulo, dados, colunas, largura_colunas=None, parent_w
         btn_adicionar.pack(side="left", padx=5)
     
     return lista_janela
-
 # ===================== TELA DE ALUNOS =====================
 def listar_alunos(parent_window=None):
     if parent_window:
