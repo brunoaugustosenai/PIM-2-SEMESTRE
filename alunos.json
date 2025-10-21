@@ -6,10 +6,16 @@
         "curso": "ADS"
     },
     {
-        "nome": "Bruno",
-        "RA": "H764II3",
+        "nome": "Bruno Augusto Gimenez Alves",
+        "RA": "H764113",
         "turma": "ADS2",
         "curso": "ADS",
-        "email": "H764II3"
+        "email": "H764113"
+    },
+    {
+        "nome": "Otavio Dos Santos Souza Nascimento",
+        "RA": "R857638",
+        "turma": "ADS2",
+        "curso": "ADS"
     }
 ]

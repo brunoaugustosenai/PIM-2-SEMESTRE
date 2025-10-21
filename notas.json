@@ -16,5 +16,17 @@
         "turma": "ADS2",
         "disciplina": "c++",
         "nota": "10"
+    },
+    {
+        "aluno": "Adrian",
+        "turma": "ADS2",
+        "disciplina": "Programação C++",
+        "nota": "7"
+    },
+    {
+        "aluno": "Otavio Dos Santos Souza Nascimento",
+        "turma": "ADS2",
+        "disciplina": "Programação Python",
+        "nota": "8"
     }
 ]
