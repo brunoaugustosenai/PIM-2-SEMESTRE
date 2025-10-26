@@ -3,18 +3,32 @@
         "nome": "Engenharia de Software",
         "codigo": "ENG001",
         "professor": "Raul",
+        "turma": "ADS2",
+        "curso": "ADS - Análise e Desenvolvimento de Sistemas",
         "carga_horaria": "80"
     },
     {
         "nome": "Programação Python",
         "codigo": "PYT002",
         "professor": "Aldy",
+        "turma": "ADS2",
+        "curso": "ADS - Análise e Desenvolvimento de Sistemas",
         "carga_horaria": "60"
     },
     {
         "nome": "Programação C++",
         "codigo": "CPP003",
-        "professor": "Roger",
+        "professor": "Rogerio",
+        "turma": "ADS2",
+        "curso": "ADS - Análise e Desenvolvimento de Sistemas",
         "carga_horaria": "70"
+    },
+    {
+        "nome": "Analise e Projetos de Sistemas",
+        "codigo": "APS030",
+        "professor": "Raul",
+        "turma": "ADS2",
+        "curso": "ADS - Análise e Desenvolvimento de Sistemas",
+        "carga_horaria": "120"
     }
 ]

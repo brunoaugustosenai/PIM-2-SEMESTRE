@@ -1,32 +1,47 @@
 [
     {
-        "aluno": "Bruno",
-        "turma": "ADS2",
-        "disciplina": "engenharia",
-        "nota": "10"
-    },
-    {
         "aluno": "Adrian",
         "turma": "ADS2",
         "disciplina": "python",
-        "nota": "10"
-    },
-    {
-        "aluno": "Bruno",
-        "turma": "ADS2",
-        "disciplina": "c++",
-        "nota": "10"
+        "nota": "10",
+        "np1": "8.0",
+        "np2": "7.0"
     },
     {
         "aluno": "Adrian",
         "turma": "ADS2",
         "disciplina": "Programação C++",
-        "nota": "7"
+        "nota": "7",
+        "np1": "3.0",
+        "np2": "9.0"
     },
     {
         "aluno": "Otavio Dos Santos Souza Nascimento",
         "turma": "ADS2",
         "disciplina": "Programação Python",
-        "nota": "8"
+        "nota": "8",
+        "np2": "8.0",
+        "np1": "10.0"
+    },
+    {
+        "aluno": "Bruno Augusto Gimenez Alves",
+        "turma": "ADS2",
+        "disciplina": "Programação Python",
+        "np1": "8.0",
+        "np2": "9.0"
+    },
+    {
+        "aluno": "Bruno Augusto Gimenez Alves",
+        "turma": "ADS2",
+        "disciplina": "Programação C++",
+        "np1": "8.0",
+        "np2": "10.0"
+    },
+    {
+        "aluno": "Otavio Dos Santos Souza Nascimento",
+        "turma": "ADS2",
+        "disciplina": "Programação C++",
+        "np1": "7.0",
+        "np2": "7.0"
     }
 ]
