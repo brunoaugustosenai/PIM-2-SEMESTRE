@@ -3123,7 +3123,6 @@ def abrir_tela_admin():
     btn_config.grid(row=2, column=1, padx=5, pady=5)
 
     tela_admin.mainloop()
-
 # ===================== TELA DO ALUNO =====================
 def abrir_tela_aluno(email_usuario):
     # ===================== FUNÇÃO PARA NORMALIZAR TEXTOS =====================
@@ -3145,7 +3144,6 @@ def abrir_tela_aluno(email_usuario):
         resposta = messagebox.askyesno("Sair", "Deseja realmente sair e voltar ao login?")
         if resposta:
             tela_aluno.destroy()
-            main_login_window()
 
     # ===================== CARREGAR DADOS =====================
     notas = carregar_notas()
@@ -3175,12 +3173,13 @@ def abrir_tela_aluno(email_usuario):
         return
 
     # ===================== CABEÇALHO =====================
-    header = tk.Frame(tela_aluno, bg="#2c3e50")
+    header = tk.Frame(tela_aluno, bg="#2c3e50", height=70)  # Altura ajustada
     header.pack(fill="x", pady=10, padx=20)
+    header.pack_propagate(False)  # IMPEDE QUE O FRAME REDUZA DE TAMANHO
 
     # Informações do aluno
     info_frame = tk.Frame(header, bg="#2c3e50")
-    info_frame.pack(side="left", fill="x", expand=True)
+    info_frame.pack(side="left", fill="both", expand=True, padx=15, pady=12)
     
     tk.Label(info_frame, text=f"Bem-vindo(a), {nome_aluno}", 
              bg="#2c3e50", fg="white", font=("Arial", 16, "bold")).pack(anchor="w")
@@ -3190,16 +3189,41 @@ def abrir_tela_aluno(email_usuario):
 
     user_icon_path = r"PROJETO_TKINTER\user.png"
     try:
-        user_img = Image.open(user_icon_path).resize((35, 35), Image.Resampling.LANCZOS)
+        user_img = Image.open(user_icon_path).resize((25, 25), Image.Resampling.LANCZOS)  # Ícone menor
         user_icon = ImageTk.PhotoImage(user_img)
     except:
         user_icon = None
 
-    btn_logout = tk.Button(header, text="Sair", image=user_icon, compound="left",
+    # BOTÃO SAIR COM BORDER RADIUS - usando Frame para simular bordas arredondadas
+    btn_frame = tk.Frame(header, bg="#2c3e50")
+    btn_frame.pack(side="right", padx=10, pady=10)
+    
+    # Frame para simular bordas arredondadas
+    rounded_frame = tk.Frame(btn_frame, bg="#e74c3c", relief="flat", bd=0)
+    rounded_frame.pack(padx=0, pady=0)
+    
+    # Botão dentro do frame arredondado
+    btn_logout = tk.Button(rounded_frame, text=" Sair", image=user_icon, compound="left",
                            bg="#e74c3c", fg="white", font=("Arial", 10, "bold"),
-                           command=confirmar_sair, relief="flat")
+                           command=confirmar_sair, relief="flat", 
+                           width=15, height=10, cursor="hand2", bd=0,
+                           highlightthickness=0)  # Remove a borda de foco
     btn_logout.image = user_icon
-    btn_logout.pack(side="right")
+    btn_logout.pack(padx=10, pady=5)  # Padding interno para o botão
+    
+    # EFEITO HOVER PARA O BOTÃO SAIR
+    def on_enter_sair(e):
+        btn_logout.config(bg="#c0392b", font=("Arial", 10, "bold"))
+        rounded_frame.config(bg="#c0392b")
+    
+    def on_leave_sair(e):
+        btn_logout.config(bg="#e74c3c", font=("Arial", 10, "bold"))
+        rounded_frame.config(bg="#e74c3c")
+    
+    btn_logout.bind("<Enter>", on_enter_sair)
+    btn_logout.bind("<Leave>", on_leave_sair)
+    rounded_frame.bind("<Enter>", on_enter_sair)
+    rounded_frame.bind("<Leave>", on_leave_sair)
 
     # ===================== NOTEBOOK (ABAS) =====================
     notebook = ttk.Notebook(tela_aluno)
@@ -3615,7 +3639,7 @@ def abrir_tela_aluno(email_usuario):
     tela_aluno.focus_force()
     tela_aluno.lift()
     tela_aluno.mainloop()
-
+# ===================== TELA DO PROFESSOR =====================
 # ===================== TELA DO PROFESSOR =====================
 def abrir_tela_professor(email_professor):
     # ===================== INÍCIO DA TELA =====================
@@ -3629,7 +3653,6 @@ def abrir_tela_professor(email_professor):
         resposta = messagebox.askyesno("Sair", "Deseja realmente sair e voltar ao login?")
         if resposta:
             tela_professor.destroy()
-            main_login_window()
 
     # ===================== CARREGAR DADOS =====================
     notas = carregar_notas()
@@ -3662,12 +3685,13 @@ def abrir_tela_professor(email_professor):
         return
 
     # ===================== CABEÇALHO =====================
-    header = tk.Frame(tela_professor, bg="#2c3e50")
+    header = tk.Frame(tela_professor, bg="#2c3e50", height=70)  # Altura ajustada
     header.pack(fill="x", pady=10, padx=20)
+    header.pack_propagate(False)  # IMPEDE QUE O FRAME REDUZA DE TAMANHO
 
     # Informações do professor
     info_frame = tk.Frame(header, bg="#2c3e50")
-    info_frame.pack(side="left", fill="x", expand=True)
+    info_frame.pack(side="left", fill="both", expand=True, padx=15, pady=12)
     
     tk.Label(info_frame, text=f"Bem-vindo(a), Prof. {nome_professor}", 
              bg="#2c3e50", fg="white", font=("Arial", 16, "bold")).pack(anchor="w")
@@ -3681,16 +3705,41 @@ def abrir_tela_professor(email_professor):
 
     user_icon_path = r"PROJETO_TKINTER\user.png"
     try:
-        user_img = Image.open(user_icon_path).resize((35, 35), Image.Resampling.LANCZOS)
+        user_img = Image.open(user_icon_path).resize((25, 25), Image.Resampling.LANCZOS)  # Ícone menor
         user_icon = ImageTk.PhotoImage(user_img)
     except:
         user_icon = None
 
-    btn_logout = tk.Button(header, text="Sair", image=user_icon, compound="left",
+    # BOTÃO SAIR COM BORDER RADIUS - usando Frame para simular bordas arredondadas
+    btn_frame = tk.Frame(header, bg="#2c3e50")
+    btn_frame.pack(side="right", padx=15, pady=8)
+    
+    # Frame para simular bordas arredondadas
+    rounded_frame = tk.Frame(btn_frame, bg="#e74c3c", relief="flat", bd=0)
+    rounded_frame.pack(padx=0, pady=0)
+    
+    # Botão dentro do frame arredondado
+    btn_logout = tk.Button(rounded_frame, text=" Sair", image=user_icon, compound="left",
                            bg="#e74c3c", fg="white", font=("Arial", 10, "bold"),
-                           command=confirmar_sair, relief="flat")
+                           command=confirmar_sair, relief="flat", 
+                           width=15, height=10, cursor="hand2", bd=0,
+                           highlightthickness=0)  # Remove a borda de foco
     btn_logout.image = user_icon
-    btn_logout.pack(side="right")
+    btn_logout.pack(padx=8, pady=4)  # Padding interno para o botão
+    
+    # EFEITO HOVER PARA O BOTÃO SAIR
+    def on_enter_sair(e):
+        btn_logout.config(bg="#c0392b", font=("Arial", 10, "bold"))
+        rounded_frame.config(bg="#c0392b")
+    
+    def on_leave_sair(e):
+        btn_logout.config(bg="#e74c3c", font=("Arial", 10, "bold"))
+        rounded_frame.config(bg="#e74c3c")
+    
+    btn_logout.bind("<Enter>", on_enter_sair)
+    btn_logout.bind("<Leave>", on_leave_sair)
+    rounded_frame.bind("<Enter>", on_enter_sair)
+    rounded_frame.bind("<Leave>", on_leave_sair)
 
     # ===================== NOTEBOOK (ABAS) =====================
     notebook = ttk.Notebook(tela_professor)
@@ -4201,7 +4250,6 @@ def abrir_tela_professor(email_professor):
     tela_professor.focus_force()
     tela_professor.lift()
     tela_professor.mainloop()
-
 # ===================== FUNÇÃO PARA CADASTRAR NOTAS (PROFESSOR) =====================
 def abrir_tela_notas_professor(parent_window, nome_professor):
     if parent_window:
@@ -4552,24 +4600,41 @@ def main_login_window():
         h = root.winfo_height()
         frame_x = (w - container_width) / 2
         frame_y = (h - container_height) / 2
+        
+        # CORREÇÃO: Apagar apenas o container, não a logo
         canvas.delete("container")
+        
+        # Desenhar container PRIMEIRO (fundo)
         round_rect(canvas, frame_x, frame_y, frame_x+container_width, frame_y+container_height,
                    radius=20, fill="#6a5acd", outline="#6a5acd", tags="container")
         return frame_x, frame_y
 
     frame_x, frame_y = container_wi()
 
-    logo_path = "Logo Educacional B.A.N.O.L.L.png"
+    # CORREÇÃO: Carregar a logo DEPOIS do container e com tag específica
+    logo_path = os.path.join(os.getcwd(), "IMG", "Logo.png")
+    
     try:
-        img = Image.open(logo_path).resize((80, 80), Image.Resampling.LANCZOS)
-        logo_img = ImageTk.PhotoImage(img)
-        logo = canvas.create_image(frame_x + container_width//2, frame_y + 60, image=logo_img, tags="logo")
-    except:
-        logo_img = None
-        logo = None
+        img = Image.open(logo_path).resize((135, 125), Image.Resampling.LANCZOS)
+        root.logo_img = ImageTk.PhotoImage(img)
+        
+        # CORREÇÃO: Posicionar a logo ACIMA do container
+        logo = canvas.create_image(frame_x + container_width//2, frame_y + 60, 
+                                   image=root.logo_img, tags=("logo", "above_container"))
+        print(f"✅ Logo carregada com sucesso: {logo_path}")
+        
+        # CORREÇÃO: Garantir que a logo fique acima do container
+        canvas.tag_raise("logo")
+        
+    except Exception as e:
+        print(f"❌ Erro ao carregar logo: {e}")
+        # Fallback - criar um logo com texto
+        logo = canvas.create_text(frame_x + container_width//2, frame_y + 60, 
+                                text="🎓", font=("Arial", 40), fill="white", tags=("logo", "above_container"))
+        canvas.tag_raise("logo")
 
     def create_entry(parent, placeholder="", is_password=False):
-        entry = tk.Entry(parent, bd=0, bg="#ffffff", fg="gray", font=("Arial", 12))
+        entry = tk.Entry(parent, bd=0, bg="#ffffff", fg="gray", font=("Arial", 12), highlightthickness=1, highlightcolor="#6a5acd")
         entry.insert(0, placeholder)
         if is_password:
             entry.config(show="")
@@ -4589,11 +4654,10 @@ def main_login_window():
         entry.bind("<FocusOut>", on_focus_out)
         return entry
 
-    # Alterado o placeholder para "Código da Matéria ou RA"
+    # Criar campos de entrada
     email_entry = create_entry(root, placeholder="Código da Matéria ou RA")
     senha_entry = create_entry(root, placeholder="Senha", is_password=True)
 
-    # ===================== FUNÇÃO LOGIN ATUALIZADA =====================
     def login():
         usuario = email_entry.get().strip()
         senha = senha_entry.get().strip()
@@ -4601,12 +4665,11 @@ def main_login_window():
         
         if usuario in users and users[usuario] == senha:
             messagebox.showinfo("Sucesso", f"Bem-vindo, {usuario}!")
-            root.destroy()  # Fecha a tela de login
+            root.destroy()
         
             if usuario == "admin":
                 abrir_tela_admin()
-            elif usuario in ["ENG001", "PYT002", "CPP003", "BD004", "RED005", "SO006", "ED007", "IA008"]:  # Códigos das matérias
-                # Encontrar o professor pelo código da matéria
+            elif usuario in ["ENG001", "PYT002", "CPP003", "BD004", "RED005", "SO006", "ED007", "IA008"]:
                 disciplinas = carregar_disciplinas()
                 professor = None
                 for disc in disciplinas:
@@ -4618,17 +4681,11 @@ def main_login_window():
                     abrir_tela_professor(professor)
                 else:
                     messagebox.showerror("Erro", "Professor não encontrado para esta matéria!")
-            elif usuario == "H764II3":  # Aluno exemplo
-                abrir_tela_aluno(usuario)
-            elif usuario == "R8043H6":  # Outro aluno exemplo
-                abrir_tela_aluno(usuario)
             else:
-                # Para outros usuários genéricos (alunos por RA)
                 abrir_tela_aluno(usuario)
         else:
             messagebox.showerror("Erro", "Código da matéria/RA ou senha incorretos!")
 
-    # ===================== FUNÇÃO REGISTER =====================
     def register():
         usuario = email_entry.get().strip()
         senha = senha_entry.get().strip()
@@ -4648,47 +4705,66 @@ def main_login_window():
 
     def create_button(parent, text, bg_color="#ffffff", fg_color="#6a5acd", command=None):
         btn = tk.Button(parent, text=text, bg=bg_color, fg=fg_color,
-                         font=("Arial", 12, "bold"), bd=0, relief="flat", command=command)
+                         font=("Arial", 12, "bold"), bd=0, relief="flat", 
+                         cursor="hand2", command=command)
         
-        # Adicionar efeito hover visível
         def on_enter(e):
-            btn.config(bg="#f0f0f0", font=("Arial", 12, "bold"))
+            btn.config(bg="#f0f0f0" if bg_color == "#ffffff" else "#34495e")
         
         def on_leave(e):
-            btn.config(bg=bg_color, font=("Arial", 12, "bold"))
+            btn.config(bg=bg_color)
         
         btn.bind("<Enter>", on_enter)
         btn.bind("<Leave>", on_leave)
         
         return btn
 
+    # Criar botões
     login_btn = create_button(root, "Login", command=login)
     register_btn = create_button(root, "Cadastrar", bg_color="#27ae60", fg_color="white", command=register)
     fb_btn = create_button(root, "f", bg_color="#3b5998", fg_color="white", command=facebook_login)
     google_btn = create_button(root, "G", bg_color="#db4437", fg_color="white", command=google_login)
 
+    # Adicionar textos informativos no canvas
+    canvas.create_text(frame_x + container_width//2, frame_y + 320, 
+                      text="Ou entre com", fill="white", font=("Arial", 10), tags="social_text")
+
     def update_layout(event=None):
         frame_x, frame_y = container_wi()
-        if logo:
-            canvas.coords(logo, frame_x + container_width//2, frame_y + 60)
+        
+        # CORREÇÃO: Atualizar posição da logo primeiro
+        canvas.coords(logo, frame_x + container_width//2, frame_y + 60)
+        
+        # CORREÇÃO: Garantir que logo fique sempre acima
+        canvas.tag_raise("logo")
+        
+        # Atualizar textos
+        canvas.coords("social_text", frame_x + container_width//2, frame_y + 320)
+        
+        # Posicionar widgets
         email_entry.place(x=frame_x + 40, y=frame_y + 140, width=270, height=35)
         senha_entry.place(x=frame_x + 40, y=frame_y + 200, width=270, height=35)
         login_btn.place(x=frame_x + 40, y=frame_y + 260, width=130, height=40)
         register_btn.place(x=frame_x + 180, y=frame_y + 260, width=130, height=40)
-        fb_btn.place(x=frame_x + int(container_width*0.25)-25, y=frame_y + 320, width=50, height=35)
-        google_btn.place(x=frame_x + int(container_width*0.75)-25, y=frame_y + 320, width=50, height=35)
+        fb_btn.place(x=frame_x + int(container_width*0.25)-25, y=frame_y + 350, width=50, height=35)
+        google_btn.place(x=frame_x + int(container_width*0.75)-25, y=frame_y + 350, width=50, height=35)
 
     root.bind("<Configure>", update_layout)
     update_layout()
 
+    # Footer
     footer = tk.Label(root, text="© 2025 Minha Aplicação", bg="#2c3e50", fg="#bdc3c7", font=("Arial", 10))
     footer.pack(side="bottom", pady=10)
 
+    # Atalhos de teclado
     email_entry.bind("<Return>", lambda e: login())
     senha_entry.bind("<Return>", lambda e: login())
 
+    # Focar no campo de email inicialmente
+    email_entry.focus_set()
+
     root.mainloop()
-    
+
 if __name__ == "__main__":
     inicializar_sistema()  
     main_login_window()
