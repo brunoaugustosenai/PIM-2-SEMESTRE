@@ -3640,7 +3640,6 @@ def abrir_tela_aluno(email_usuario):
     tela_aluno.lift()
     tela_aluno.mainloop()
 # ===================== TELA DO PROFESSOR =====================
-# ===================== TELA DO PROFESSOR =====================
 def abrir_tela_professor(email_professor):
     # ===================== INÍCIO DA TELA =====================
     tela_professor = tk.Tk()
