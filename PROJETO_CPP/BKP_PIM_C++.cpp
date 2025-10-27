@@ -5,60 +5,61 @@
 
 using namespace std;
 
-bool criarDiretorio(const string& caminho) {
-    return CreateDirectoryA(caminho.c_str(), NULL);
+bool criarDiretorio(const wstring& caminho) {
+    return CreateDirectoryW(caminho.c_str(), NULL);
 }
 
-bool diretorioExiste(const string& caminho) {
-    DWORD atributos = GetFileAttributesA(caminho.c_str());
+bool diretorioExiste(const wstring& caminho) {
+    DWORD atributos = GetFileAttributesW(caminho.c_str());
     return (atributos != INVALID_FILE_ATTRIBUTES && 
            (atributos & FILE_ATTRIBUTE_DIRECTORY));
 }
 
-void copiarPasta(const string& origem, const string& destino) {
-    string comando = "xcopy \"" + origem + "\" \"" + destino + "\" /E /I /Y /H";
-    system(comando.c_str());
+void copiarPasta(const wstring& origem, const wstring& destino) {
+    wstring comando = L"xcopy \"" + origem + L"\" \"" + destino + L"\" /E /I /Y /H";
+    _wsystem(comando.c_str());
 }
 
 int main() {
-    string origem = "C:\\Users\\josericardo\\Desktop\\PIM 2° SEMESTRE";
-    string destino = "D:\\bkp_PIM";
+    // Usar wstring para suporte a Unicode
+    wstring origem = L"C:\\Users\\josericardo\\Desktop\\PIM 2° SEMESTRE";
+    wstring destino = L"D:\\BKP_PIM";
     
-    cout << "Verificando pasta de origem..." << endl;
+    wcout << L"Verificando pasta de origem..." << endl;
     
     if (!diretorioExiste(origem)) {
-        cout << "ERRO: Pasta de origem nao existe!" << endl;
-        cout << "Caminho: " << origem << endl;
-        cout << "Pressione Enter para sair...";
+        wcout << L"ERRO: Pasta de origem nao existe!" << endl;
+        wcout << L"Caminho: " << origem << endl;
+        wcout << L"Pressione Enter para sair...";
         cin.get();
         return 1;
     }
     
-    cout << "Pasta de origem encontrada!" << endl;
-    cout << "Criando pasta de destino..." << endl;
+    wcout << L"Pasta de origem encontrada!" << endl;
+    wcout << L"Criando pasta de destino..." << endl;
     
     if (!diretorioExiste(destino)) {
         if (!criarDiretorio(destino)) {
-            cout << "ERRO: Nao foi possivel criar pasta de destino!" << endl;
-            cout << "Pressione Enter para sair...";
+            wcout << L"ERRO: Nao foi possivel criar pasta de destino!" << endl;
+            wcout << L"Pressione Enter para sair...";
             cin.get();
             return 1;
         }
-        cout << "Pasta de destino criada: " << destino << endl;
+        wcout << L"Pasta de destino criada: " << destino << endl;
     } else {
-        cout << "Pasta de destino ja existe!" << endl;
+        wcout << L"Pasta de destino ja existe!" << endl;
     }
     
-    cout << "\nINICIANDO BACKUP..." << endl;
-    cout << "De: " << origem << endl;
-    cout << "Para: " << destino << endl;
-    cout << "Aguarde...\n" << endl;
+    wcout << L"\nINICIANDO BACKUP..." << endl;
+    wcout << L"De: " << origem << endl;
+    wcout << L"Para: " << destino << endl;
+    wcout << L"Aguarde...\n" << endl;
     
     copiarPasta(origem, destino);
     
-    cout << "\nBACKUP CONCLUIDO COM SUCESSO!" << endl;
-    cout << "Pressione Enter para sair...";
+    wcout << L"\nBACKUP CONCLUIDO COM SUCESSO!" << endl;
+    wcout << L"Pressione Enter para sair...";
     cin.get();
     
     return 0;
-}
+} 
