@@ -101,19 +101,18 @@ def cadastrar_usuarios_padrao():
     """Cadastra usuários padrão se não existirem"""
     users = load_users()
     
-    # AGORA usando códigos das matérias para professores
+    # Senha, códigos das matérias para professores
     usuarios_padrao = {
         "admin": "1234",
         "ENG001": "1234",  # Engenharia de Software - Prof. Raul
         "PYT002": "1234",  # Programação Python - Prof. Aldy
+        "APS030": "1234", # Analise e Projetos de sistmas - Prf. Raul
         "CPP003": "1234",  # Programação C++ - Prof. Rogerio
-        "BD004": "1234",   # Banco de Dados
-        "RED005": "1234",  # Redes de Computadores
-        "SO006": "1234",   # Sistemas Operacionais
-        "ED007": "1234",   # Estrutura de Dados
-        "IA008": "1234",   # Inteligência Artificial
-        "H764II3": "1234", # Aluno
-        "R8043H6": "1234"  # Aluno
+        "BD004": "1234",   # Banco de Dados - AVA
+        "RED005": "1234",  # Redes de Computadores - AVA
+        "SO006": "1234",   # Sistemas Operacionais - AVA
+        "ED007": "1234",   # Estrutura de Dados - AVA
+        "IA008": "1234",   # Inteligência Artificial - AVA
     }
     
     atualizado = False
@@ -144,6 +143,7 @@ def inicializar_sistema():
             "turma": "ADS2",
             "curso": "ADS - Análise e Desenvolvimento de Sistemas",
             "email": "H764II3"
+
         })
         salvar_alunos(alunos)
     
@@ -172,6 +172,14 @@ def inicializar_sistema():
             "turma": "ADS2",
             "curso": "ADS - Análise e Desenvolvimento de Sistemas",
             "carga_horaria": "70"
+        },
+        {
+            "nome": "Analise e Projetos de Sistemas",
+            "codigo": "APS030",
+            "professor": "Raul",
+            "turma": "ADS2",
+            "curso": "ADS - Análise e Desenvolvimento de Sistemas",
+            "carga_horaria": "120"
         }
     ]
     
@@ -1304,12 +1312,7 @@ def abrir_tela_cadastro(parent_window=None):
     
     # Combobox para Curso com opções pré-definidas
     cursos_opcoes = [
-        "ADS - Análise e Desenvolvimento de Sistemas",
-        "GTI - Gestão da Tecnologia da Informação", 
-        "SI - Sistemas de Informação",
-        "CC - Ciência da Computação",
-        "EC - Engenharia da Computação",
-        "RC - Redes de Computadores"
+        "ADS - Análise e Desenvolvimento de Sistemas"
     ]
     curso_combobox = ttk.Combobox(main_frame, values=cursos_opcoes, width=25, font=("Arial", 10))
     curso_combobox.grid(row=4, column=1, sticky="ew", padx=10, pady=8)
@@ -1620,6 +1623,7 @@ def abrir_tela_disciplinas(parent_window=None):
     # COMBOBOX para Matéria
     disciplinas_opcoes = [
         "Engenharia de Software",
+        "Analise e Projetos de Sistemas",
         "Programação Python", 
         "Programação C++",
         "Banco de Dados",
@@ -1661,11 +1665,6 @@ def abrir_tela_disciplinas(parent_window=None):
     # COMBOBOX para Curso com opções pré-definidas
     cursos_opcoes = [
         "ADS - Análise e Desenvolvimento de Sistemas",
-        "GTI - Gestão da Tecnologia da Informação", 
-        "SI - Sistemas de Informação",
-        "CC - Ciência da Computação",
-        "EC - Engenharia da Computação",
-        "RC - Redes de Computadores"
     ]
     curso_combobox = ttk.Combobox(main_frame, values=cursos_opcoes, width=25, font=("Arial", 10))
     curso_combobox.grid(row=5, column=1, sticky="ew", padx=10, pady=8)
@@ -4239,7 +4238,7 @@ def abrir_tela_professor(email_professor):
     footer = tk.Frame(tela_professor, bg="#2c3e50", height=30)
     footer.pack(fill="x", side="bottom")
     
-    tk.Label(footer, text=f"© 2025 Sistema Acadêmico - Professor {nome_professor}", 
+    tk.Label(footer, text=f"© 2025 BACOLL- Professor {nome_professor}", 
              bg="#2c3e50", fg="#bdc3c7", font=("Arial", 9)).pack(pady=5)
 
     # Atualizar lista de notas inicialmente
@@ -4752,7 +4751,7 @@ def main_login_window():
     update_layout()
 
     # Footer
-    footer = tk.Label(root, text="© 2025 Minha Aplicação", bg="#2c3e50", fg="#bdc3c7", font=("Arial", 10))
+    footer = tk.Label(root, text="© 2025 BACOLL", bg="#2c3e50", fg="#bdc3c7", font=("Arial", 10))
     footer.pack(side="bottom", pady=10)
 
     # Atalhos de teclado
