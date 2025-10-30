@@ -1,14 +1,6 @@
 [
     {
-        "aluno": "Adrian",
-        "turma": "ADS2",
-        "disciplina": "python",
-        "nota": "10",
-        "np1": "1.0",
-        "np2": "8.0"
-    },
-    {
-        "aluno": "Adrian",
+        "aluno": "Adrian Correa de Oliveira",
         "turma": "ADS2",
         "disciplina": "Programação C++",
         "nota": "7",
@@ -45,10 +37,59 @@
         "np2": "7.0"
     },
     {
-        "aluno": "Adrian",
+        "aluno": "Adrian Correa de Oliveira",
         "turma": "ADS2",
         "disciplina": "Engenharia de Software",
         "np1": "2.0",
         "np2": "2.0"
+    },
+    {
+        "aluno": "Bruno Augusto Gimenez Alves",
+        "turma": "ADS2",
+        "disciplina": "Analise e Projetos de Sistemas",
+        "np1": "5.0",
+        "np2": "5.0"
+    },
+    {
+        "aluno": "Bruno Augusto Gimenez Alves",
+        "turma": "ADS2",
+        "disciplina": "Engenharia de Software",
+        "np1": "4.0",
+        "np2": "1.0"
+    },
+    {
+        "aluno": "Leonario Rodrigues Silva",
+        "turma": "ADS2",
+        "disciplina": "Programação Python",
+        "np1": "5.0",
+        "np2": "9.0"
+    },
+    {
+        "aluno": "Luís Guilherme André Campiotto",
+        "turma": "ADS1",
+        "disciplina": "Programação Python",
+        "np1": "7.0",
+        "np2": "5.0"
+    },
+    {
+        "aluno": "Leonario Rodrigues Silva",
+        "turma": "ADS2",
+        "disciplina": "Engenharia de Software",
+        "np1": "8.0",
+        "np2": "8.0"
+    },
+    {
+        "aluno": "Luís Guilherme André Campiotto",
+        "turma": "ADS1",
+        "disciplina": "Engenharia de Software",
+        "np1": "8.0",
+        "np2": "8.0"
+    },
+    {
+        "aluno": "Cauã Bieni Pasin",
+        "turma": "ADS2",
+        "disciplina": "Analise e Projetos de Sistemas",
+        "np1": "9.0",
+        "np2": "6.0"
     }
 ]

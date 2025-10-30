@@ -4750,7 +4750,6 @@ def main_login_window():
     root.bind("<Configure>", update_layout)
     update_layout()
 
-    # Footer
     footer = tk.Label(root, text="© 2025 BACOLL", bg="#2c3e50", fg="#bdc3c7", font=("Arial", 10))
     footer.pack(side="bottom", pady=10)
 

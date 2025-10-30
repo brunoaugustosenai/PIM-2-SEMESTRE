@@ -1,6 +1,6 @@
 [
     {
-        "nome": "Adrian",
+        "nome": "Adrian Correa de Oliveira",
         "RA": "R8043H6",
         "turma": "ADS2",
         "curso": "ADS"
@@ -22,6 +22,18 @@
         "nome": "Cauã Bieni Pasin",
         "RA": "H74JJF0",
         "turma": "ADS2",
+        "curso": "ADS"
+    },
+    {
+        "nome": "Leonario Rodrigues Silva",
+        "RA": "R254461",
+        "turma": "ADS2",
+        "curso": "ADS"
+    },
+    {
+        "nome": "Luís Guilherme André Campiotto",
+        "RA": "H77EGH0",
+        "turma": "ADS1",
         "curso": "ADS"
     }
 ]
