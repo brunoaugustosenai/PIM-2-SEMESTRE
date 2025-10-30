@@ -7,7 +7,7 @@ import webbrowser
 import unicodedata
 import datetime
 import shutil
-
+import sys
 # ===================== ARQUIVO JSON (USUÁRIOS) =====================
 USERS_FILE = "usuarios.json"
 
@@ -143,8 +143,7 @@ def inicializar_sistema():
             "turma": "ADS2",
             "curso": "ADS - Análise e Desenvolvimento de Sistemas",
             "email": "H764II3"
-
-        })
+            })
         salvar_alunos(alunos)
     
     # Adicionar disciplinas exemplo se não existirem
